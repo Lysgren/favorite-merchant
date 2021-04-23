@@ -1,0 +1,22 @@
+.Button {
+  height: fit-content;
+  width: fit-content;
+  text-decoration: none;
+  color: black;
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  border-radius: 20px;
+  border: 0.2rem solid black;
+  background: #fff;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.Button:hover {
+  color: white;
+  border: 0.2rem solid black;
+  background: black;
+}
+
+.Padding {
+  padding: 2% 0 30px 0;
+}

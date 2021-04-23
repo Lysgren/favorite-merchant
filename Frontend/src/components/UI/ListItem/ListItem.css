@@ -1,0 +1,12 @@
+.ListItem {
+  list-style: none;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.ListItem div {
+  font-size: 20px;
+}

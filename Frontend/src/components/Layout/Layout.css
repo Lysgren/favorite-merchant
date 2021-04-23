@@ -1,0 +1,30 @@
+.Layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 60px;
+  width: 80%;
+  min-height: 15rem;
+  height: fit-content;
+  color: black;
+  padding: 1rem 4rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.Layout ul {
+  padding: 0;
+}
+
+.InfoText {
+  font-size: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.InfoTextSmall {
+  font-size: 14px;
+}
