@@ -1,6 +1,7 @@
 .ListItem {
   list-style: none;
   padding: 15px;
+  line-height: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,4 +10,8 @@
 
 .ListItem div {
   font-size: 20px;
+}
+
+.ListItem hr {
+  width: 500px;
 }

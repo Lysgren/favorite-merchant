@@ -9,7 +9,8 @@ class Layout extends Component {
     transActionLink: 'https://link.tink.com/1.0/transactions/connect-accounts/?client_id=c6959dcee54a42178b8b9a947504f191&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&market=SE&locale=sv_SE&test=true&scope=transactions:read',
     transactions: false,
     loading: false,
-    error: false
+    error: false,
+    errorMessage: ''
   }
 
   async getDataFromAPIHandler(payload) {
@@ -17,7 +18,7 @@ class Layout extends Component {
     const JSONPayload = JSON.stringify(jsonObject)
 
     try {
-      this.setState({ loading: true })
+      this.setState({ error: false, loading: true })
       const request = await fetch('http://localhost:8080/getData', {
         method: 'POST',
         headers: {
@@ -27,8 +28,14 @@ class Layout extends Component {
       })
   
       const responseData = await request.json()
-      console.log(responseData)
-      this.setState({ loading: false, transactions: responseData })
+
+      if (responseData.name === 'Error') {
+        console.log(responseData)
+        this.setState({ error: true, loading: false, errorMessage: responseData.message })
+      } else {
+        console.log(responseData)
+        this.setState({ loading: false, transactions: responseData })
+      }
     } catch (error) {
       console.log(error)
     }
@@ -69,14 +76,14 @@ class Layout extends Component {
                 return <ListItem 
                   key={ index } 
                   vendor={ element.Vendor } 
-                  price={ `Total gained: ${element.Price}` } 
+                  price={ `Total gained during 2020: ${element.Price}` } 
                   currency={ element.Currency }
                 />
               } else {
                 return <ListItem
                   key={ index }
                   vendor={ element.Vendor }
-                  price={ `Total spent: ${element.Price}` }
+                  price={ `Total spent during 2020: ${element.Price}` }
                   currency={ element.Currency }
                 />
               }
@@ -85,10 +92,20 @@ class Layout extends Component {
         </ul>
       )
     }
+
+    if (this.state.error) {
+      list = (
+        <div>
+          <p>An <b>error</b> has occured!</p>
+          <div>Error message: { this.state.errorMessage }</div>
+          <p>Ps, you need to make a new request everytime you reload the page</p>
+        </div>
+        )
+    }
     
     return (
       <div className={ 'Layout' }>
-        <div className={ 'InfoText' }>This app let's you see what merchant is your favorite!</div>
+        <div className={ 'InfoText' }>This app shows which seller you have spent the most money on during 2020!</div>
         { list }
         <Button href={ this.state.transActionLink } str={ 'View my favorite merchant' }/>
         <div className={ 'InfoTextSmall' }>Ps, make sure both the frontend and the backend is running</div>

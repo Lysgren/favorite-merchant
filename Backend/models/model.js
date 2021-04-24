@@ -130,7 +130,7 @@ const main = async code => {
   const accessToken = await getAccessToken(formBody)
   if (!accessToken) { return 'No access token given by Tink API' }
 
-  const year = 2020
+  const year = 2021
   const validTransactions = await getAllValidTransactions(accessToken, year)
   const filteredTransactions = transformTransactions(validTransactions)
 
